@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie App</title>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <form>
+            <label>Movie Title</label>
+            <input class="form-control" type="text" id="title"/>
+            <label>Movie Rating</label>
+            <input class="form-control" type="number" min="0" max="10" id="rating"/>
+            <button type="button" class="btn btn-secondary" id="enterMovie">Submit</button>
+        </form>
+    </div>
+    <div class="container" id="listContainer">
+        <ul id="movieList">
+
+
+        </ul>
+        <div class="sortButtons">
+            <button type="button" class="btn btn-secondary" id="sortRating">Sort by rating</button>
+            <button type="button" class="btn btn-secondary" id="sortName">Sort by name</button>
+        </div> 
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $(function(){
+        $('.sortButtons').hide();
+    })
+    $('.enterMovie').on('click', function(evt){
+        evt.preventDefault();
+        if($('#title').val().length >= 2) {
+        $('ul').append(`<li>${$('#title').val()} - ${$('#rating').val()}</li>`)
+        $('li').last().append('<button type="button" class="btn btn-light">Remove from list</button>').on('click', function(){
+            $(this).remove()
+        })
+        $('#title').val('')
+        $('#rating').val('')
+        $('.sortButtons').show();
+    } else {
+        alert('Movie title needs to be at least 2 characters long!')
+    }})
+    $('#sortRating').on('click', function(){
+        preventDefault();
+    })
+</script>
+</body>
+</html>
